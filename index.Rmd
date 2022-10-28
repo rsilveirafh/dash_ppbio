@@ -1,0 +1,228 @@
+---
+title: "Dashboard Like a Boss"
+output: 
+  flexdashboard::flex_dashboard:
+    vertical_layout: scroll
+    orientation: rows
+    css: dashboard_source_folder/css/starlight_css.css
+    theme: bootstrap
+    
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+
+# setup all chunks
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+options(scipen=999)    # scientific notation off
+
+# packages
+
+library(flexdashboard) # dashboards
+library(highcharter)   # interactive plots
+library(DT)            # search/filter/downloadable tables
+library(tidyverse)     # data wrangling
+source("source/R/file_export.R")
+
+```
+
+<div class="footer">
+  <p> 2022 | Ricardo da Silveira Filho | ricardodasilveira@gmail.com | github.com/rsilveirafh </p>
+</div>
+  
+  
+```{r,echo=F}
+# pdated <script> document.write(new Date().toLocaleDateString()); </script> 
+# outline:
+# motivation
+# anatomy of a dashboard. navigation bar != header. 
+# map the anatomy to the css code
+# define the basic components, and the basic attributes that can be modified.
+# everything is like an object. there are 
+# boarders: margin, padding  [learn diff between margin and padding]
+# sizes: font-size, height/width
+# position: fixed, float.....
+
+# can css take variables? how?
+# can i use javascript instead? how?
+# find way to set css global custom options for:
+# value boxes
+# highcharter
+# ggplot
+# datatable
+# color theme
+
+
+# can use shiny runtime. make a skeleton for that and put on github
+# look into navigation menu drop down
+# you can bring the css into your code using a chunk:
+#  ```{css}
+#  ```
+# same way you"d do an r chunk
+
+# create code block looking style option
+```
+
+
+```{r export}
+
+
+```
+
+
+Slides {data-orientation="columns"}
+=====================================
+
+Column {data-height=800}
+-------------------------------------
+
+```{r,dpi=240}
+knitr::include_url("slides/dash_slides.html", height="850px")
+```
+ 
+
+1. Basic Layout
+=====================================
+
+Row {data-height=175}
+-------------------------------------
+
+
+### 1-10, how cool are Value Boxes?
+```{r}
+
+valueBox(2
+         )
+```
+
+
+### 1-10, how cool are gauges?
+```{r}
+
+gauge(9 
+      , min = 0 , max = 10
+      , gaugeSectors( success = c(9, 10), warning = c(7, 9), danger = c(0, 7))
+      )
+
+```
+
+### 1-10, how cool are Value Boxes + favicon icons?
+```{r}
+
+valueBox(7
+         , icon="fa-tag"
+         )
+
+```
+
+Row {data-height=300}
+-------------------------------------
+### stuuuuffff
+
+```{r}
+
+
+
+
+
+```
+
+### more stuuuffffff
+
+```{r}
+
+
+```
+
+
+
+
+
+
+
+
+Row {data-height=300}
+-------------------------------------
+
+### great insight
+
+
+```{r}
+
+```
+
+
+### so actionable
+```{r}
+
+```
+
+
+
+
+Row {data-height=1000, .tabset}
+-------------------------------------
+### omg
+
+```{r}
+
+          
+
+```
+
+### it"s taaabbbed
+
+```{r}
+
+          
+          
+
+```
+
+
+
+
+
+
+2. Printing {data-orientation="columns"}
+=====================================
+
+Column {data-height=1000}
+-------------------------------------
+
+```{r,dpi=240}
+knitr::include_url("tutorials/Table-Print-Comparison.html", height="1000px")
+```
+ 
+
+3. Datasets {data-orientation="columns"}
+=====================================
+
+Column {data-height=1000}
+-------------------------------------
+
+```{r,dpi=240}
+knitr::include_url("tutorials/Including-Datasets.html", height="1000px")
+```
+
+4. Interactive Viz {data-orientation="columns"}
+=====================================
+
+Column {data-height=1000}
+-------------------------------------
+
+```{r,dpi=240}
+knitr::include_url("tutorials/Highcharter-tutorial.html", height="1000px")
+```
+  
+
+ 
+5. Exporting
+=====================================
+
+Column {data-height=1000}
+-------------------------------------
+
+```{r,dpi=300}
+knitr::include_url("tutorials/Exporting.html", height="1000px")
+```
+  
