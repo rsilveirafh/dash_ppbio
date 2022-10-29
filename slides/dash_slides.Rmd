@@ -1,29 +1,22 @@
 ---
-title: "Panoramas da biodiversidade genética do Brasil"
+title: "Panoramas da Biodiversidade Brasileira"
 subtitle: "Projeto piloto: Anfíbios"
-author : "Ricardo Rodrigues da Silveira Filho"
+author : "Ricardo Rodrigues da Silveira Filho | Adrian Antonio Garda"
 output: 
     ioslides_presentation:
         widescreen: true
         smaller: true
-        css: ../source/css/starlight-slides_css.css
+        css: ../source/css/caatinga-slides_css.css
         highlight: monochrome
-        
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
-
-```{r setup, include=FALSE,warning=FALSE,message=FALSE}
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
 
 # setup for all chunks
 knitr::opts_chunk$set(echo = FALSE)
-
-# packages
-library(DT)
-library(highcharter)
-library(lubridate)
-library(RMySQL)
-library(summarytools)
-library(tidyverse)
 
 ```
 
@@ -60,19 +53,17 @@ slides > slide:not(.nobackground):before {
 ```
 
 
-1. título, redes de parcerias estabelecidas. 2-3. andamento. 4. Produtos esperados e datas de entrega dos mesmos. 5. gargalos que precisam ser resolvidos para funcionar melhor)
-
 # Atualizações...
 
-## Atualizações | Laboratório {.flexbox .vleft}
+## Atualizações | Laboratório {.flexbox .vcenter}
 
 <h3>Volta ao trabalho presencial!</h3>
-</br>
-</br>
+
+</br> </br>
 
 - Organização pós pandemia
 
-- Instalação de experimento a longo prazo (8 dias/mês)
+- Instalação de experimento a longo prazo ([8 dias/mês]{.underline})
 
 - Treinamento de pessoal (graduação, pós)
 
@@ -83,206 +74,82 @@ slides > slide:not(.nobackground):before {
 
 ## Atualizações | Pesquisa {.flexbox .vcenter}
 
-> - Dados de anfíbios e répteis coletados
+- Dados de anfíbios e répteis **coletados**
 
-> - Função para coleta de dados no BOLD Systems ok
+- Início do desenvolvimento:
 
-> - 8 dias/mês
+	- Pacote **panppbio** para o *R*
 
-> - Treinamento de pessoal (graduação, pós)
+	- Função para coleta de dados no *BOLD Systems*
+
+	- *Dashboard* em construção
 
 
+# Produtos esperados
 
-## How to DLAB? | A 12 Step Program to Quit Emailing Plots & Csvs
+## Pacote **panppbio** | Auxiliando outros grupos de pesquisa
 
-1. Basic Layout
-2. Printing: Tables,Descriptice Stats, Model summaries
-3. Interactive Datasets
-4. Interactive Plots
-5. Exporting
-6. CSS basics
-7. Branding (Logos,  font, colors)
-8. Header/Footer
-9. Hosting
-10. Automate-ish (render + system())
-11. Replicate (render with arguments)
-12. Automate or App it (cron, shiny runtime) 
+- Porquê?
 
+- <https://github.com/rsilveirafh/panppbio>
+
+- Lista de espécies
+	- Anfíbios (**ok**)
+	- Aves (**--**)
+	- Mamíferos (**ok -- Hernani**)
+	- Peixes (**?**)
+	- Répteis (**ok**)
+
+## Pacote **panppbio** | Continuação
+
+- BOLD Systems (**OK**)
+	- Coletar dados baseado em duas pesquisas:
+		- Classe + País
+		- Nomes das espécies
+- NCBI (**0%**)
+	- Idem acima
+- IUCN (**0% -- Sem Token para API**)
+	- Status, espacial e *trait*
+- GBIF (**0%**)
+	- *Trait* e espacial
+- Correção de nomes e atualizações
+
+</br> </br>
+>> **Entrega prevista: ~ agosto 2023**
 
 
 ## Dashboard? | Melhorando a forma de comunicação
 
- 
 <h5>1\. Dados gerais</h5>
 <h5>2\. Gráficos</h5>
-<h5>3\. Interactive Datasets</h5>
+<h5>3\. Mapas</h5>
 <h5>4\. Tabelas</h5>
 <h5>5\. Exportando</h5>
 
-
-# 1. Basic Layout
-<3 flexdashboard <3
-
-## .Rmd + flexdashboard 
- 
-### Before :(
- 
-
-```{r,out.width = "400px"}
-knitr::include_graphics("images/yaml_before.png")
-``` 
-
-### After :)
- 
-```{r,out.width = "400px"}
-knitr::include_graphics("images/yaml_after.png")
-``` 
+</br> </br> </br> </br> </br> </br> </br> </br> </br> </br>
+>> **Entrega prevista: ~ maio 2023**
 
 
-## flexdashboard layouts
+## Onde me encontrar? | github.com/rsilveirafh
 
-### My go-to
+<small>
 
-```{r,out.width = "500px"}
-knitr::include_graphics("images/yaml_goto.png")
-```
+<div class="columns-1">
 
-*optional*: </br>
+- Blog:
+    - <a href="https://rsilveirafh.netlify.app/about.html">https://rsilveirafh.netlify.app/</a>
 
- + vertical_layout: \{scroll, fill\}
+- CV:
+    - <a href="https://github.com/rsilveirafh/blogR/blob/6013efef2292427bfbead7f12d6dcff443c1be08/Curriculum-Vitae-RRdSF.pdf">currículo</a>
 
- + orientation: \{columns, rows\}
+- LinkedIn:
+    - <a href="https://www.linkedin.com/in/rsilveirafh/">https://www.linkedin.com/in/rsilveirafh/</a>
+    
+- E-mail
+    - <a href="mailto:ricardodasilveira@gmail.com">ricardodasilveira\@gmail.com</a>
 
- 
-#  | print() is simply unacceptable
-# 2. Printing Tables, Descriptive Stats & Model Summaries 
+</br> </br> </br> </br> </br>
 
+**Obrigado!**
 
-
-##   Tables, Descriptive Stats & Model Summaries
-
-<center>
-<h3>printr
-</br>
-</br>
-summarytools::dfSummary
-</br>
-</br>
-stargazer::stargazer</h3>
-</center>
-
-##   Table Printing: my go-to 
-
-</br>
-</br>
-<h3> tables & descriptive stats:  **printr** </h3>
-</br>
-</br>
-<h3> model summaries: **stargazer::stargazer** </h3>
-</br>
-
-
-##  Model Summary & Comparisons | stargazer::stargazer
-
-Which model summary statistics do you wantto include in the output? Bookmark the link for later
-
-https://rdrr.io/cran/stargazer/man/stargazer_stat_code_list.html
-
-# 3. Interactive Datasets 
-
-##  Interactive Datasets 
-
-<center>
-
-
-<h3>DT::datatable</h3>
-</center>
-
-
-## Datasets | DT::datatable 
-
-* pretty printing
-
-* flexible formatting
-
-* column filtering
-
-* csv download
-
-* cell highlighting (think heatmap)
-
-
-
-# 4. Interactive plots | We're not in PowerPoint anymore.
-
-##  4. Interactive plots 
-<center>
-<h3>highcharter</h3></center>
-
-</br>
-</br>
-</br>
-</br>
-</br>
-ggplot2 will always have a place in your heart, but dashboards need more than pngs
-
-##  4. Interactive plots 
-<center>
-<h3>highcharter</h3></center>
-
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-Other options
-       
-* *Maps*:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            leaflet 
-* *Timeseries*:   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       dygraphs
-* *ggplot2 compatible*: &nbsp;&nbsp;&nbsp;&nbsp; plotly
-
-
-
-
-
-
-# 4. Exporting 
-
-## Exporting 
-
-* Datasets with DT
-
-* Highcharter Plots
-
-
-## Dashboard LIKE A BOSS: pro tips | Let your dashboard work for you
-
-SIMPLE 
-
-> - Start with a simple template & someone else's css 
-> - Add in the essentials or the lowest hanging fruit as you go
-
-ORGANIZED
-
-> - *Maintain a folder* containing: css, exporting scripts, color palletes, global themes, & templates
-> - Keep a staging folder for exploration--*don't make changes you won't know how to undo*.
-> - Keep expensive data cleaning in a separate script (easier to introduce it later than remove it after)
-
-EXPLORE 
-
-> - Try something new (template, plots, or css) to improve the appearance & usability of each new dashboard
-> - Slowly work in:  About page & explanations,  interactive viz, exporting, logo, footer, padding/margins
-
-
-## Onde me encontrar: | github.com/rsilveirafh
-<small> <div class="columns-2"> 
-1. Blog: 
-    + <a href="https://rsilveirafh.netlify.app/about.html">https://rsilveirafh.netlify.app/</a> 
-2. CV: 
-    + All: <a href="https://github.com/rsilveirafh/blogR/blob/6013efef2292427bfbead7f12d6dcff443c1be08/Curriculum-Vitae-RRdSF.pdf">CV</a> 
-3. LinkedIn:
-    + <a href="https://www.linkedin.com/in/rsilveirafh/">https://www.linkedin.com/in/rsilveirafh/</a>
-4. E-mail
-    + <a href="mailto:ricardodasilveira@gmail.com">ricardodasilveira@gmail.com</a>
 </small>

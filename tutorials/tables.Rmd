@@ -1,0 +1,102 @@
+---
+title: "Highcharter Tutorial"
+output: 
+  html_document:
+    css: ../source/css/caatinga_css.css
+    logo: ../source/logos/ppbio.png
+
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+library(DT)            # for search/filter/downloadable tables
+library(flexdashboard) # dashboards!
+library(highcharter)   # for interactive plots
+library(tidyverse)     # doi
+options(scipen=999)    # keep scientific notation turned off
+```
+
+</br>
+
+# Bar chart with hchart() {data-height=700}
+
+```{r,message=FALSE, warning=FALSE}
+
+ mpg %>% 
+  count(class, year) %>% 
+   hchart( "column", hcaes(x = class, y = n, group = year))
+```
+
+</br>
+
+
+# Bubble plot
+
+```{r}
+data(stars)
+stars %>% hchart("scatter", hcaes(temp, lum, size = radiussun)) 
+```
+
+
+# axis type = "logarithmic"
+```{r}
+stars %>% 
+  hchart("scatter", hcaes(temp, lum, size = radiussun))  %>% 
+  hc_xAxis(type = "logarithmic") %>%                                    ####
+  hc_yAxis(type = "logarithmic")                                        ####
+```
+
+
+
+
+# Adding colors via colorize
+```{r}
+colors <- c("#FB1108","#FD150B","#FA7806","#FBE426","#FCFB8F",                     #####
+            "#F3F5E7", "#C7E4EA","#ABD6E6","#9AD2E1")                              #####
+stars$color <- colorize(log(stars$distance), colors)                               #####
+
+stars %>%
+  hchart( "scatter", hcaes(temp, lum, size = radiussun, color=color)) %>%          #####
+  hc_xAxis(type = "logarithmic") %>% 
+  hc_yAxis(type = "logarithmic", gridLineWidth = 0) 
+
+```
+
+
+# Axis titles
+```{r}
+colors <- c("#FB1108","#FD150B","#FA7806","#FBE426","#FCFB8F",
+            "#F3F5E7", "#C7E4EA","#ABD6E6","#9AD2E1")
+stars$color <- colorize(log(stars$distance), colors)
+
+stars %>% 
+  hchart( "scatter", hcaes(temp, lum, size = radiussun, color=color)) %>% 
+  hc_xAxis(type = "logarithmic" , title = list(text ="Temperature")) %>%       ######
+  hc_yAxis(type = "logarithmic", title = list(text ="Luminosity")) %>%         ######
+  hc_title(text="Sweet bubble plot")                                           ######
+
+```
+
+
+
+
+# Custom hover text
+
+```{r}
+colors <- c("#FB1108","#FD150B","#FA7806","#FBE426","#FCFB8F",
+            "#F3F5E7", "#C7E4EA","#ABD6E6","#9AD2E1")
+stars$color <- colorize(log(stars$distance), colors)
+
+x <- c("Luminosity", "Temperature", "Distance")                #####  what do you want to name the values
+y <- sprintf("{point.%s:.2f}", c("lum", "temp", "distance"))   #####  column names of the values & formatting to cut off at 2 decimal places
+tltip <- tooltip_table(x, y)                                   #####  creates the tooltip
+
+stars %>% 
+  hchart( "scatter", hcaes(temp, lum, size = radiussun, color=color)) %>% 
+  hc_xAxis(type = "logarithmic" , title = list(text ="Temperature")) %>% 
+  hc_yAxis(type = "logarithmic", title = list(text ="Luminosity")) %>% 
+   hc_title(text="Sweet bubble plot")   %>%
+  hc_tooltip(useHTML = TRUE, headerFormat = "", pointFormat = tltip)     ##### use the tooltip
+
+```
+

@@ -1,19 +1,19 @@
 ---
-title: 'flexdashboard Layout with Notes'
+title: "flexdashboard Layout with Notes"
 output: 
   flexdashboard::flex_dashboard:
-    logo: ../dashboard_source_folder/logos/onica_amazon_small.png
+    logo: ../source/logos/ppbio.png
     vertical_layout: scroll
     orientation: rows
-    css: ../dashboard_source_folder/css/basic_css.css
+    css: ../source/css/basic_css.css
     theme: bootstrap
     
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE) # always echo=FALSE for dashboards. No need to show off. you can include source code if you want
-# bc you set echo to false, you don't actually need include=FALSE, message=FALSE, or warning=FALSE in the 
-# chunk "preamble" (can I call it that? if it's called something else can I still call it that?) 
+# bc you set echo to false, you don"t actually need include=FALSE, message=FALSE, or warning=FALSE in the 
+# chunk "preamble" (can I call it that? if it"s called something else can I still call it that?) 
 library(flexdashboard) # dashboards!
 library(highcharter)   # for interactive plots
 library(DT)            # for search/filter/downloadable tables
@@ -22,7 +22,7 @@ options(scipen=999)    # keep scientific notation turned off
 ```
 
 <div class="footer">
-  <p> DCR 2019 | Malorie Hughes | maloriejhughes@gmail.com | github.com/maloriejhughes </p>
+  <p> 2022 | Ricardo Rodrigues da Silveira Filho | ricardodasilveira@gmail.com | github.com/rsilveirafh </p>
 </div>
   
 
@@ -46,7 +46,8 @@ valueBox(2
 
 gauge(9 
       , min = 0 , max = 10
-      , gaugeSectors( success = c(9, 10), warning = c(7, 9), danger = c(0, 7))
+      , gaugeSectors( success = c(9, 10), warning = c(7, 9), danger = c(0, 7),
+      				colors = c("#246647", "#DAAE10", "#AF3C64"))
       )
 
 ```
@@ -115,7 +116,7 @@ Row {data-height=1000, .tabset}
 
 ```
 
-### it's taaabbbed
+### it"s taaabbbed
 
 ```{r}
 
@@ -142,7 +143,7 @@ Column {data-width=300}
 <h4> Make use of your css headers</h4>
 You can do the column layout, which is particularly useful if 
 
-+ you want an informative sidebar to help the user understand what's going on in the dashboard
++ you want an informative sidebar to help the user understand what"s going on in the dashboard
 
 + you will be comparing two things sie by side*, such as bar plots (of fixed y-axis height)
 
@@ -152,7 +153,7 @@ You can do the column layout, which is particularly useful if
 <h3> and what was h3?</h3>
 <h1> css header "functions" are the ish</h1>
 
-Note: *When  you use column orientation, you'll have to assign the column width so that all the columns on the page sum to 1000.*
+Note: *When  you use column orientation, you"ll have to assign the column width so that all the columns on the page sum to 1000.*
 
 
 
@@ -166,11 +167,11 @@ Column {data-width=700}
 
 I made this box short.  You can control the size of entire rows, columns, or the "boxes" inside a row or column. 
 
-But, you'll notice: in the column-orientation layout, if you put text in the box instead of a plot, the box height shrinks down to a height to accomidate the text, rather than the fixed height
+But, you"ll notice: in the column-orientation layout, if you put text in the box instead of a plot, the box height shrinks down to a height to accomidate the text, rather than the fixed height
 
 ### so cool 2 {data-height=700}
 
-You can force the box to keep it's assigned height by adding an empty chunk of R code (or not empty, depends on your goal) IMMEDIATELY following the text. If you leave a blank line it won't work for reasons beyond me.
+You can force the box to keep it"s assigned height by adding an empty chunk of R code (or not empty, depends on your goal) IMMEDIATELY following the text. If you leave a blank line it won"t work for reasons beyond me.
 ```{r}
 
 ```

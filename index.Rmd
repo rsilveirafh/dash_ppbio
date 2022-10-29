@@ -1,10 +1,10 @@
 ---
-title: "Dashboard Like a Boss"
+title: "Panoramas da Biodiversidade Brasileira"
 output: 
   flexdashboard::flex_dashboard:
     vertical_layout: scroll
     orientation: rows
-    css: dashboard_source_folder/css/starlight_css.css
+    css: source/css/caatinga_css.css
     theme: bootstrap
     
 ---
@@ -13,61 +13,26 @@ output:
 
 # setup all chunks
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+Sys.setlocale(category = "LC_TIME", locale = "pt_BR.UTF-8")
 options(scipen=999)    # scientific notation off
 
 # packages
-
+library(DT)            # search/filter/downloadable tables
 library(flexdashboard) # dashboards
 library(highcharter)   # interactive plots
-library(DT)            # search/filter/downloadable tables
+library(plotly)
+library(lubridate)     # deal with datas
 library(tidyverse)     # data wrangling
 source("source/R/file_export.R")
+source("source/R/utils.R")
 
 ```
+
 
 <div class="footer">
   <p> 2022 | Ricardo da Silveira Filho | ricardodasilveira@gmail.com | github.com/rsilveirafh </p>
 </div>
   
-  
-```{r,echo=F}
-# pdated <script> document.write(new Date().toLocaleDateString()); </script> 
-# outline:
-# motivation
-# anatomy of a dashboard. navigation bar != header. 
-# map the anatomy to the css code
-# define the basic components, and the basic attributes that can be modified.
-# everything is like an object. there are 
-# boarders: margin, padding  [learn diff between margin and padding]
-# sizes: font-size, height/width
-# position: fixed, float.....
-
-# can css take variables? how?
-# can i use javascript instead? how?
-# find way to set css global custom options for:
-# value boxes
-# highcharter
-# ggplot
-# datatable
-# color theme
-
-
-# can use shiny runtime. make a skeleton for that and put on github
-# look into navigation menu drop down
-# you can bring the css into your code using a chunk:
-#  ```{css}
-#  ```
-# same way you"d do an r chunk
-
-# create code block looking style option
-```
-
-
-```{r export}
-
-
-```
-
 
 Slides {data-orientation="columns"}
 =====================================
@@ -75,154 +40,187 @@ Slides {data-orientation="columns"}
 Column {data-height=800}
 -------------------------------------
 
-```{r,dpi=240}
-knitr::include_url("slides/dash_slides.html", height="850px")
+```{r, dpi=240}
+
+knitr::include_url("slides/dash_slides.html", height = "850px")
+
 ```
  
 
-1. Basic Layout
+1. Dados gerais
 =====================================
 
 Row {data-height=175}
 -------------------------------------
 
-
-### 1-10, how cool are Value Boxes?
 ```{r}
 
-valueBox(2
-         )
+# number of species
+n_spp <- amp_splist |> 
+	count() |> 
+	pull() 
+
+# number of species with genetic data
+n_spp_gen <- search_amp_spp |> 
+	distinct(species_name) |> 
+	count() |> 
+	pull()
+
+# number of total genetic data
+n_spp_gen_tot <- search_amp_spp |> 
+	count() |> 
+	pull()
+
 ```
 
 
-### 1-10, how cool are gauges?
+### Número de espécies de anfíbios no Brasil
+
 ```{r}
 
-gauge(9 
-      , min = 0 , max = 10
-      , gaugeSectors( success = c(9, 10), warning = c(7, 9), danger = c(0, 7))
-      )
+valueBox(format(x = n_spp, big.mark = ".", decimal.mark = ","))
 
 ```
 
-### 1-10, how cool are Value Boxes + favicon icons?
+
+### Número de espécies de anfíbios com dados genéticos
+
 ```{r}
 
-valueBox(7
-         , icon="fa-tag"
-         )
+gauge(n_spp_gen, 
+	  min = 0, 
+	  max = n_spp,
+	  gaugeSectors(success = c(n_spp * 0.8, n_spp), 
+	  			 warning = c(n_spp * 0.4, n_spp * 0.8), 
+	  			 danger = c(0, n_spp * 0.4),
+	  			 colors = c("#246647", "#DAAE10", "#AF3C64")
+	  			 ))
 
 ```
 
-Row {data-height=300}
+
+### Número de dados genéticos de anfíbios
+
+```{r}
+
+valueBox(format(x = n_spp_gen_tot, big.mark = ".", decimal.mark = ","), 
+		 icon = "fa-envira")
+
+```
+
+
+Row {data-height=825, .tabset}
 -------------------------------------
-### stuuuuffff
 
-```{r}
+### Transformando os dados
 
+```{r, echo=TRUE, eval=FALSE}
 
-
-
-
-```
-
-### more stuuuffffff
-
-```{r}
-
+datatable(amp_splist, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
 ```
 
 
-
-
-
-
-
-
-Row {data-height=300}
--------------------------------------
-
-### great insight
-
+### BOLD Systems
 
 ```{r}
+
+# BOLD using only Class and Country
+datatable(search_amp_br, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
 ```
 
 
-### so actionable
 ```{r}
+
+# BOLD by species
+datatable(search_amp_spp, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
 ```
 
 
+### NCBI
 
+```{r, echo=TRUE, eval=FALSE}
 
-Row {data-height=1000, .tabset}
--------------------------------------
-### omg
-
-```{r}
-
-          
-
-```
-
-### it"s taaabbbed
-
-```{r}
-
-          
-          
+library(rentrez)
 
 ```
 
 
+### IUCN
+
+```{r, echo=TRUE, eval=FALSE}
+
+library(rredlist)
+
+```
 
 
+### GBIF
+```{r, echo=TRUE, eval=FALSE}
+
+datatable(amp_gbif, filter = "top",  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
+
+```
 
 
-2. Printing {data-orientation="columns"}
+2. Gráficos {data-orientation="columns"}
 =====================================
 
 Column {data-height=1000}
 -------------------------------------
 
 ```{r,dpi=240}
-knitr::include_url("tutorials/Table-Print-Comparison.html", height="1000px")
+
+knitr::include_url("tutorials/graphs.html", height="1000px")
+
 ```
  
 
-3. Datasets {data-orientation="columns"}
+3. Mapas {data-orientation="columns"}
 =====================================
 
 Column {data-height=1000}
 -------------------------------------
 
 ```{r,dpi=240}
-knitr::include_url("tutorials/Including-Datasets.html", height="1000px")
+
+knitr::include_url("tutorials/maps.html", height="1000px")
+
 ```
 
-4. Interactive Viz {data-orientation="columns"}
+
+4. Tabelas {data-orientation="columns"}
 =====================================
 
 Column {data-height=1000}
 -------------------------------------
 
 ```{r,dpi=240}
-knitr::include_url("tutorials/Highcharter-tutorial.html", height="1000px")
+
+knitr::include_url("tutorials/tables.html", height="1000px")
+
 ```
   
 
- 
-5. Exporting
+5. Exportando
 =====================================
 
 Column {data-height=1000}
 -------------------------------------
 
 ```{r,dpi=300}
-knitr::include_url("tutorials/Exporting.html", height="1000px")
+
+knitr::include_url("tutorials/exporting.html", height="1000px")
+
 ```
   
