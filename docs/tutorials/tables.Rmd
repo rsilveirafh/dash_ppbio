@@ -1,5 +1,5 @@
 ---
-title: "Highcharter Tutorial"
+title: "Tabelas"
 output: 
   html_document:
     css: ../source/css/caatinga_css.css
@@ -19,7 +19,7 @@ source("../source/R/utils.R")
 options(scipen=999)    # keep scientific notation turned off
 ```
 
-</br>
+
 
 Row {data-height=1000, .tabset}
 -------------------------------------
@@ -47,7 +47,7 @@ datatable(search_amp_br, filter = 'top',
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 
 # BOLD by species
 datatable(search_amp_spp, filter = 'top',  
