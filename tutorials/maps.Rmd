@@ -1,5 +1,5 @@
 ---
-title: "Datasets"
+title: "Mapas"
 output: 
   html_document:
     logo: ../source/logos/ppbio.png
