@@ -13,90 +13,74 @@ library(DT)            # for search/filter/downloadable tables
 library(flexdashboard) # dashboards!
 library(highcharter)   # for interactive plots
 library(tidyverse)     # doi
+source("../source/R/file_export.R")
+source("../source/R/utils.R")
+
 options(scipen=999)    # keep scientific notation turned off
 ```
 
 </br>
 
-# Bar chart with hchart() {data-height=700}
+Row {data-height=1000, .tabset}
+-------------------------------------
 
-```{r,message=FALSE, warning=FALSE}
+### Transformando os dados
 
- mpg %>% 
-  count(class, year) %>% 
-   hchart( "column", hcaes(x = class, y = n, group = year))
-```
+```{r, echo=TRUE, eval=FALSE}
 
-</br>
-
-
-# Bubble plot
-
-```{r}
-data(stars)
-stars %>% hchart("scatter", hcaes(temp, lum, size = radiussun)) 
-```
-
-
-# axis type = "logarithmic"
-```{r}
-stars %>% 
-  hchart("scatter", hcaes(temp, lum, size = radiussun))  %>% 
-  hc_xAxis(type = "logarithmic") %>%                                    ####
-  hc_yAxis(type = "logarithmic")                                        ####
-```
-
-
-
-
-# Adding colors via colorize
-```{r}
-colors <- c("#FB1108","#FD150B","#FA7806","#FBE426","#FCFB8F",                     #####
-            "#F3F5E7", "#C7E4EA","#ABD6E6","#9AD2E1")                              #####
-stars$color <- colorize(log(stars$distance), colors)                               #####
-
-stars %>%
-  hchart( "scatter", hcaes(temp, lum, size = radiussun, color=color)) %>%          #####
-  hc_xAxis(type = "logarithmic") %>% 
-  hc_yAxis(type = "logarithmic", gridLineWidth = 0) 
+datatable(amp_splist, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
 ```
 
 
-# Axis titles
-```{r}
-colors <- c("#FB1108","#FD150B","#FA7806","#FBE426","#FCFB8F",
-            "#F3F5E7", "#C7E4EA","#ABD6E6","#9AD2E1")
-stars$color <- colorize(log(stars$distance), colors)
+### BOLD Systems
 
-stars %>% 
-  hchart( "scatter", hcaes(temp, lum, size = radiussun, color=color)) %>% 
-  hc_xAxis(type = "logarithmic" , title = list(text ="Temperature")) %>%       ######
-  hc_yAxis(type = "logarithmic", title = list(text ="Luminosity")) %>%         ######
-  hc_title(text="Sweet bubble plot")                                           ######
+```{r}
+
+# BOLD using only Class and Country
+datatable(search_amp_br, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
 ```
 
 
-
-
-# Custom hover text
-
 ```{r}
-colors <- c("#FB1108","#FD150B","#FA7806","#FBE426","#FCFB8F",
-            "#F3F5E7", "#C7E4EA","#ABD6E6","#9AD2E1")
-stars$color <- colorize(log(stars$distance), colors)
 
-x <- c("Luminosity", "Temperature", "Distance")                #####  what do you want to name the values
-y <- sprintf("{point.%s:.2f}", c("lum", "temp", "distance"))   #####  column names of the values & formatting to cut off at 2 decimal places
-tltip <- tooltip_table(x, y)                                   #####  creates the tooltip
+# BOLD by species
+datatable(search_amp_spp, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
-stars %>% 
-  hchart( "scatter", hcaes(temp, lum, size = radiussun, color=color)) %>% 
-  hc_xAxis(type = "logarithmic" , title = list(text ="Temperature")) %>% 
-  hc_yAxis(type = "logarithmic", title = list(text ="Luminosity")) %>% 
-   hc_title(text="Sweet bubble plot")   %>%
-  hc_tooltip(useHTML = TRUE, headerFormat = "", pointFormat = tltip)     ##### use the tooltip
+```
+
+
+### NCBI
+
+```{r, echo=TRUE, eval=FALSE}
+
+library(rentrez)
+
+```
+
+
+### IUCN
+
+```{r, echo=TRUE, eval=FALSE}
+
+library(rredlist)
+
+```
+
+
+### GBIF
+```{r}
+
+datatable(amp_gbif, filter = "top",  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
 
 ```
 

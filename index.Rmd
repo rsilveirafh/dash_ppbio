@@ -109,67 +109,43 @@ valueBox(format(x = n_spp_gen_tot, big.mark = ".", decimal.mark = ","),
 ```
 
 
-Row {data-height=825, .tabset}
+Row {data-height=300}
+-------------------------------------
+### Informações
+
+```{r}
+
+print("Informações")
+
+```
+
+### Mais informações
+
+```{r}
+
+print("Informações")
+
+```
+
+
+Row {data-height=500}
 -------------------------------------
 
-### Transformando os dados
-
-```{r, echo=TRUE, eval=FALSE}
-
-datatable(amp_splist, filter = 'top',  
-		  options = list(searchHighlight = TRUE, 
-		  			   pageLength = 15))
-
-```
-
-
-### BOLD Systems
+### Ideias
 
 ```{r}
 
-# BOLD using only Class and Country
-datatable(search_amp_br, filter = 'top',  
-		  options = list(searchHighlight = TRUE, 
-		  			   pageLength = 15))
+print("Ideias")
 
 ```
 
+
+### Mais ideias
 
 ```{r}
 
-# BOLD by species
-datatable(search_amp_spp, filter = 'top',  
-		  options = list(searchHighlight = TRUE, 
-		  			   pageLength = 15))
-
-```
-
-
-### NCBI
-
-```{r, echo=TRUE, eval=FALSE}
-
-library(rentrez)
-
-```
-
-
-### IUCN
-
-```{r, echo=TRUE, eval=FALSE}
-
-library(rredlist)
-
-```
-
-
-### GBIF
-```{r, echo=TRUE, eval=FALSE}
-
-datatable(amp_gbif, filter = "top",  
-		  options = list(searchHighlight = TRUE, 
-		  			   pageLength = 15))
-
+print("Ideias")	
+	
 ```
 
 

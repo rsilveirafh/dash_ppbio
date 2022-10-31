@@ -14,7 +14,7 @@ library(broom) # tidy() function
 library(here) # fix working directory issues
 library(maptools) # required for "broom"
 library(patchwork) # gather the plots
-library(rgdal) # readOGR() function
+# library(rgdal) # readOGR() function
 library(rgeos) # required for "broom"
 
 ```
@@ -22,7 +22,7 @@ library(rgeos) # required for "broom"
 ## Distribuição dos dados genéticos
 
 
-```{r}
+```{r, echo = TRUE, eval=FALSE}
 
 brazil <- readOGR(dsn = here::here("/media/ricardo/backup/Mapas/Shapes/Biomas"),
 				  layer = "bioma")
