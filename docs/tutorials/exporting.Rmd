@@ -1,10 +1,9 @@
 ---
-title: "Exporting"
+title: "Exportando"
 output: 
   flexdashboard::flex_dashboard:
     vertical_layout: scroll
     css: ../source/css/basic_css.css
-    logo: ../source/logos/ppbio.png
     theme: bootstrap
 ---
 
@@ -21,7 +20,7 @@ options(scipen=999)    # keep scientific notation turned off
 highcharter
 =====================================
 
-```{r, results="hide"}
+```{r, results="hide", echo=FALSE}
 source("../source/R/file_export.R")
 
 mpg %>% 

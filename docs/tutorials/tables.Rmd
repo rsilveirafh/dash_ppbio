@@ -19,7 +19,7 @@ source("../source/R/utils.R")
 options(scipen=999)    # keep scientific notation turned off
 ```
 
-
+</br>
 
 Row {data-height=1000, .tabset}
 -------------------------------------
