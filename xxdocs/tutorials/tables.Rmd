@@ -1,0 +1,86 @@
+---
+title: "Highcharter Tutorial"
+output: 
+  html_document:
+    css: ../source/css/caatinga_css.css
+    logo: ../source/logos/ppbio.png
+
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+library(DT)            # for search/filter/downloadable tables
+library(flexdashboard) # dashboards!
+library(highcharter)   # for interactive plots
+library(tidyverse)     # doi
+source("../source/R/file_export.R")
+source("../source/R/utils.R")
+
+options(scipen=999)    # keep scientific notation turned off
+```
+
+</br>
+
+Row {data-height=1000, .tabset}
+-------------------------------------
+
+### Transformando os dados
+
+```{r, echo=TRUE, eval=FALSE}
+
+datatable(amp_splist, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
+
+```
+
+
+### BOLD Systems
+
+```{r}
+
+# BOLD using only Class and Country
+datatable(search_amp_br, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
+
+```
+
+
+```{r}
+
+# BOLD by species
+datatable(search_amp_spp, filter = 'top',  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
+
+```
+
+
+### NCBI
+
+```{r, echo=TRUE, eval=FALSE}
+
+library(rentrez)
+
+```
+
+
+### IUCN
+
+```{r, echo=TRUE, eval=FALSE}
+
+library(rredlist)
+
+```
+
+
+### GBIF
+```{r}
+
+datatable(amp_gbif, filter = "top",  
+		  options = list(searchHighlight = TRUE, 
+		  			   pageLength = 15))
+
+```
+

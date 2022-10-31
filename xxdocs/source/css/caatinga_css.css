@@ -1,0 +1,113 @@
+.navbar { 
+  height: 100px;
+}
+
+.navbar-inverse { 
+  font-size: 100%;
+  background-color: white;
+  position:fixed;
+  z-index: 1; 
+}
+
+.navbar-title {
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
+  font-size: 80px;
+  font-family: arial, helvetica;
+  margin: 5px auto;
+  width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.navbar-brand {
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: 260;
+  font-size: 60px;
+  font-family: arial, helvetica;
+  margin-top: 5px;
+  padding-top: 30px;
+  padding-bottom: 90px;
+}
+
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.level1 {
+  margin-top: 50px;
+}
+
+.footer {
+  position: fixed; 
+  left: 0;
+  bottom: 0;
+  width: 98%;
+  text-align: right;
+}
+
+h1 { 
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
+  font-size: 150%;
+  font-family: arial, helvetica;
+  width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+h2 {
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
+  font-family: arial, helvetica;
+  width: 600px;
+  font-size: 121%;
+}
+
+h5 {
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
+  font-family: arial, helvetica;
+  font-size: 121%;
+}
+
+h3 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 109%;
+}
+
+h4 {
+  font-size: 130%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.knockout {
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
+  font-size: 100px;
+  font-family: arial, helvetica;
+  width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}

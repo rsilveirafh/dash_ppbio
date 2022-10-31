@@ -1,0 +1,68 @@
+
+.navbar {
+  border-color:black;
+}
+
+.navbar-brand {
+  color:black!important;
+}
+
+.navbar-inverse { 
+  height: 70px; 
+  font-size: 90%;
+  background-color: white;
+  position:fixed; 
+  z-index: 1; 
+}
+
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.footer {
+  position: fixed; 
+  left: 0;
+  bottom: 0;
+  width: 98%;
+  text-align: right;
+}
+
+h1 { 
+  font-weight: bold;
+  font-size: 100px;
+  font-family: arial, helvetica;
+  width: 600px;
+  margin: 50px auto;
+}
+
+h2 {
+  font-size: 121%;
+}
+
+h3 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 109%;
+}
+
+h4 {
+  font-size: 130%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.knockout {
+  background: url("caatinga.jpeg") -80px -80px;
+  color: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bold;
+  font-size: 100px;
+  font-family: arial, helvetica;
+  width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+
